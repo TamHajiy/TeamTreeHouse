@@ -18,11 +18,13 @@ const quotes = [
   },
   {
     quote:'Be the change that you wish to see in the wolrd.', 
-    source:'Mahtma Gandhi'
+    source:'Mahtma Gandhi',
+    tags: 'Spiritual Leader'
   },
   {
     quote:'Without music, life would be a mistake.', 
-    source: 'Friedrich Nietzsche',citation:'Twilight of the Idols'
+    source: 'Friedrich Nietzsche', 
+    citation:'Twilight of the Idols'
   },
   {
     quote:'You pray for rain, you gotta deal with the mud too. That is a part of it', 
@@ -36,7 +38,6 @@ const quotes = [
 ]
 
 // create `getRandomQuote` function to get random quotes from array
-
 function getRandomQuote (arr) {
   //get random item from array. Instead of number use length of an array
   let randomNum  = Math.floor(Math.random() * arr.length);
@@ -62,7 +63,10 @@ function printQuote () {
     if(rndmQuote.citation !== undefined){
       message += `<span class= "citation"> ${rndmQuote.citation} </span>`
   }
-  
+   //if statement to check if the quote has a tag
+   if(rndmQuote.tags !== undefined){
+    message += `<span class= "tags"> ${rndmQuote.tags} </span>`
+}
   //if statement to check if the quote has a year
     if(rndmQuote.year !== undefined){
       message += `<span class= "year"> ${rndmQuote.year} </span>`
@@ -72,6 +76,9 @@ function printQuote () {
   document.getElementById('quote-box').innerHTML = message;
   
 }
+
+
+// }, 1000)
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!

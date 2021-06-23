@@ -114,6 +114,13 @@ h1 {
   content: ", ";
   font-style: normal;
 }
+.tags {
+  font-style: italic;
+}
+.tags:before {
+  content: ", ";
+  font-style: normal;
+}
 
 @media (min-width: 768px) {
   body {

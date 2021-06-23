@@ -78,7 +78,6 @@ function printQuote () {
 }
 
 
-// }, 1000)
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!

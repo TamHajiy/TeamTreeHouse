@@ -1,16 +1,15 @@
-
-//Function ShowPage will show list of students.
-//pass 2 params - list - reps students data and page - reps page
+//func with list of student and 2params 'list' reps data & page reps page#
 function showPage (list, page) {
-   // set start index of the list
    const startIndex = (page * 9) - 9;
-   // set end index of the list 
    const endIndex = page * 9
    const ul = document.querySelector('.student-list');
    //remove any previous data that was displayed
    ul.innerHTML = '';
+   //iterate through student data
    for(let i = 0; i < list.length; i++){
+      //ensure i is within page start and end index
       if(i >= startIndex && i < endIndex ){
+         //Build DOM elements, set classes and append 
          const li = document.createElement('li');
          li.className = 'student-item cf';
 
@@ -22,7 +21,6 @@ function showPage (list, page) {
          img.setAttribute('src', list[i].picture.large);
          img.setAttribute('alt', 'Profile Picture')
          firstDiv.appendChild(img);
-         
          
          const h3 = document.createElement('h3');
          h3.innerHTML = `${list[i].name.first} ${list[i].name.last}`;
@@ -44,24 +42,15 @@ function showPage (list, page) {
          li.appendChild(firstDiv);
          li.appendChild(secondDiv)
          ul.insertAdjacentElement('beforeend', li);
+      } //endIF   
+   }//endLoop
+}//endFunction
 
-      //endIF   
-      }
-   //endLoop
-   }
-//endFunction
-}
-
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
+//This function will create and insert/append the elements needed for the pagination buttons
 function addPagination (list) {
-
    let numOfPages = list.length/ 9; 
    const ulLinkList = document.querySelector('.link-list');
-  
-   
+   //remove any previous # that was displayed
    ulLinkList.innerHTML = '';
 
    for(let i = 0; i < numOfPages; i++){
@@ -69,36 +58,28 @@ function addPagination (list) {
       const button = document.createElement('button');
       button.type = 'button';
       button.innerHTML = i+1;
-      
-      if(i === 1){
+
+      //set the first page as an active page
+      if(i === 0){
          button.className = 'active'
-         //endIf   
-         }
+         }//endIf 
 
       li.appendChild(button);
       ulLinkList.insertAdjacentElement('beforeend', li);
-   //endLoop   
-      }
+      }//endLoop 
 
    ulLinkList.addEventListener('click', (e) => {
       if(e.target.tagName === 'BUTTON'){
-         // remove active button
-         let activeButton = document.querySelector('.active');
-         activeButton.removeAttribute('class');
-
-         //add active to the clicked button (e.target)
+         let currentButton = document.querySelector('.active');
+         //remove current button from class active
+         currentButton.removeAttribute('class');
+         //add class active to the clicked button (e.target)
          e.target.setAttribute('class', 'active');
-
          // call showpage to display the respective button-page;
          showPage(list, e.target.innerHTML);
-         //endIF
-          }
-      //endEvent
-      })
-//endFunction   
-}
-
-
+          }//endIf
+      })//endEvent
+}//endFunction  
 
 // Call functions
 showPage(data, 1);
